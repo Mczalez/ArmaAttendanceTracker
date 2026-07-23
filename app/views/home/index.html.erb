@@ -1,3 +1,58 @@
-<h1>Arma Attendance Tracker</h1>
-<h2>A sample project</h2>
-<p>Notes:</p>
+<div class="container-fluid bg-dark min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="card bg-secondary bg-opacity-10 border-secondary shadow-sm" style="height: 50rem; width: 80rem;">
+    <div class="card-body p-4 d-flex flex-column">
+      <h3 class="text-center text-light mb-4">
+        Player Management System
+      </h3>
+      <div class="card-body p-4 table-responsive">
+        <table class="table table-hover table-dark" style="table-layout: fixed; width: 100%;">
+          <colgroup>
+            <col style="width: 40%">
+            <col style="width: 25%">
+            <col style="width: 25%">
+            <col style="width: 10%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Member</th>
+              <th scope="col">Steam64ID</th>
+              <th scope="col">Discord</th>
+              <th scope="col">Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @Users.each do |user| %>
+              <tr>
+                <td>
+                  <div class="text-truncate">
+                    <%= user.name %>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-truncate">
+                    <%= user.steam_id %>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-truncate">
+                    <%= user.discord %>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-truncate">
+                    <%= user.activity %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer d-flex justify-content-center gap-3">
+        <button type="button" class="btn btn-primary">Add</button>
+        <button type="button" class="btn btn-warning">Edit</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
