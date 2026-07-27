@@ -30,6 +30,7 @@
         </div>
 
         <div class="mb-4">
+          <%= f.label :activity, "Activity", class: "text-light" %>
           <%= f.select :activity,
                        ["Active", "LOA", "Reserve"],
                        { selected: "Reserve" },
