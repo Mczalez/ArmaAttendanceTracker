@@ -30,10 +30,11 @@
         </div>
 
         <div class="mb-4">
-          <%= f.label :activity, class: "text-light" %>
-          <%= f.text_field :activity,
-                           class: "form-control bg-dark text-light border-secondary",
-                           placeholder: "Activity" %>
+          <%= f.label :activity, "Activity", class: "text-light" %>
+          <%= f.select :activity,
+                       ["Active", "LOA", "Reserve"],
+                       { selected: "Reserve" },
+                       class: "form-control bg-dark text-light border-secondary" %>
         </div>
 
         <div class="d-flex justify-content-center gap-3">

@@ -7,11 +7,11 @@
       <div class="card-body p-4 table-responsive">
         <table class="table table-hover table-dark" style="table-layout: fixed; width: 100%;">
           <colgroup>
-            <col style="width: 10%">
+            <col style="width: 11%">
             <col style="width: 40%">
             <col style="width: 20%">
             <col style="width: 20%">
-            <col style="width: 10%">
+            <col style="width: 9%">
           </colgroup>
           <thead>
             <tr>
@@ -48,7 +48,13 @@
                 </td>
                 <td>
                   <div class="text-truncate">
-                    <%= user.activity %>
+                    <%= form_with model: user do |f| %>
+                      <%= f.select :activity,
+                                   ["Active", "LOA", "Reserve"],
+                                   {},
+                                   class: "form-control bg-dark text-center text-light border-secondary",
+                                   onchange: "this.form.submit();" %>
+                    <% end %>
                   </div>
                 </td>
               </tr>
