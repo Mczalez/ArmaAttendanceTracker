@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_22_202548) do
-  create_table "users", force: :cascade do |t|
+ActiveRecord::Schema[8.1].define(version: 2026_07_31_155440) do
+  create_table "players", force: :cascade do |t|
     t.string "activity"
     t.datetime "created_at", null: false
     t.string "discord"
     t.string "name"
     t.string "steam_id"
+    t.string "unit"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
     t.datetime "updated_at", null: false
   end
 end

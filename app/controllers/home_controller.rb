@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @Users = User.all
+    @Users = Player.all
   end
 
 
