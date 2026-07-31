@@ -1,16 +1,44 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Units" %>
-
-<h1>Units</h1>
-
-<div id="units">
-  <% @units.each do |unit| %>
-    <%= render unit %>
-    <p>
-      <%= link_to "Show this unit", unit %>
-    </p>
-  <% end %>
+<div class="container-fluid bg-dark min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="card bg-secondary bg-opacity-10 border-secondary shadow-sm" style="height: 50rem; width: 80rem;">
+    <div class="card-body p-4 d-flex flex-column">
+      <h3 class="text-center text-light mb-4">
+        Unit Management System
+      </h3>
+      <div class="card-body p-4 table-responsive overflow-auto" style="max-height: 70vh;">
+        <table class="table table-hover table-dark" style="table-layout: fixed; width: 100%;">
+          <colgroup>
+            <col style="width: 11%">
+            <col style="width: 89%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Unit</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @Units.each do |unit| %>
+            <tr>
+              <td>
+                <div class="d-flex gap-1">
+                  <%= link_to "Edit", edit_unit_path(unit.id), class: "btn btn-warning btn-sm" %>
+                  <%= link_to "Delete", delete_unit_path(unit.id), class: "btn btn-danger btn-sm" %>
+                </div>
+              </td>
+              <td>
+                <div class="text-truncate">
+                  <%= unit.name %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer d-flex justify-content-center gap-3">
+        <%= link_to "Add Unit", new_unit_path, class: "btn btn-primary" %>
+        <%= button_to "[TEMP] Browse Players", home_index_path  , method: :get %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New unit", new_unit_path %>
