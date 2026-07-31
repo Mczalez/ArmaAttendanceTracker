@@ -10,15 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_31_155440) do
+
+
+# IF THE MIGRATION NEEDS TO CHANGE LIVE DATA, PUSH TO
+# PUSH THEM ALL ANYWAY FOR HISTORY
+
+ActiveRecord::Schema[8.1].define(version: 2026_07_31_175548) do
   create_table "players", force: :cascade do |t|
     t.string "activity"
     t.datetime "created_at", null: false
     t.string "discord"
     t.string "name"
     t.string "steam_id"
-    t.string "unit"
+    t.integer "unit_id"
     t.datetime "updated_at", null: false
+    t.index ["unit_id"], name: "index_players_on_unit_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -26,4 +32,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_155440) do
     t.string "name"
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "players", "units"
 end
