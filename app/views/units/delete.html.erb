@@ -3,29 +3,28 @@
     <div class="card-body p-4">
 
       <h3 class="text-center text-light mb-4">
-        Edit Unit
-
-        <% if @unit.errors.any? %>
-          <div class="h5">
-            <br>
-            <% @unit.errors.full_messages.each do |message| %>
-              <%= message %>
-            <% end %>
-          </div>
-        <% end %>
+        Delete Unit
       </h3>
 
-      <%= form_with model: @unit do |f| %>
+      <p class="text-center text-light mb-4">
+        To delete the unit, type in their name:
+        <br><br>
+        <strong><%= @unit.name %></strong>
+        <br>
+        <%= flash[:alert] %>
+      </p>
+
+      <%= form_with model: @unit, method: :delete do |f| %>
 
         <div class="mb-3">
           <%= f.label :name, class: "text-light" %>
-          <%= f.text_field :name,
-                           class: "form-control bg-dark text-light border-secondary",
-                           placeholder: :name %>
+          <%= text_field_tag :name, nil, class: "form-control bg-dark text-light border-secondary" %>
         </div>
 
+
+
         <div class="d-flex justify-content-center gap-3">
-          <%= f.submit "Edit Unit", class: "btn btn-primary" %>
+          <%= f.submit "Delete Unit", class: "btn btn-primary" %>
 
           <%= link_to "Cancel",
                       units_path,

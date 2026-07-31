@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :units
+
   get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :players, only: [:new, :edit, :create, :update, :destroy] do
+    get :delete, on: :member
+  end
+
+  resources :units, only: [:index, :new, :edit, :create, :update, :destroy] do
     get :delete, on: :member
   end
 end

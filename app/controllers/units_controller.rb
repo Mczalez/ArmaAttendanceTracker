@@ -3,7 +3,7 @@ class UnitsController < ApplicationController
 
   # GET /units or /units.json
   def index
-    @units = Unit.all
+    @Units = Unit.all
   end
 
   # GET /units/1 or /units/1.json
@@ -17,6 +17,11 @@ class UnitsController < ApplicationController
 
   # GET /units/1/edit
   def edit
+    @unit = Unit.find(params[:id])
+  end
+
+  def delete
+    @unit = Unit.find(params[:id])
   end
 
   # POST /units or /units.json
@@ -25,11 +30,11 @@ class UnitsController < ApplicationController
 
     respond_to do |format|
       if @unit.save
-        format.html { redirect_to @unit, notice: "Unit was successfully created." }
-        format.json { render :show, status: :created, location: @unit }
+        format.html { redirect_to units_path, notice: "Unit was successfully created." }
       else
         format.html { render :new, status: :unprocessable_content }
         format.json { render json: @unit.errors, status: :unprocessable_content }
+        flash.now[:alert] = @unit.errors.full_messages.to_sentence
       end
     end
   end
@@ -38,7 +43,7 @@ class UnitsController < ApplicationController
   def update
     respond_to do |format|
       if @unit.update(unit_params)
-        format.html { redirect_to @unit, notice: "Unit was successfully updated.", status: :see_other }
+        format.html { redirect_to units_path, notice: "User updated." }
         format.json { render :show, status: :ok, location: @unit }
       else
         format.html { render :edit, status: :unprocessable_content }
@@ -49,11 +54,14 @@ class UnitsController < ApplicationController
 
   # DELETE /units/1 or /units/1.json
   def destroy
-    @unit.destroy!
+    submitted_name = params[:name]
 
-    respond_to do |format|
-      format.html { redirect_to units_path, notice: "Unit was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
+    if submitted_name == @unit.name
+      @unit.destroy
+      respond_to do |format|
+        format.html { redirect_to units_path, notice: "Unit was successfully destroyed.", status: :see_other }
+        format.json { head :no_content }
+      end
     end
   end
 
