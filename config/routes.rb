@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :units
   get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :users, only: [:new, :edit, :create, :update, :destroy] do
+  resources :players, only: [:new, :edit, :create, :update, :destroy] do
     get :delete, on: :member
   end
 end

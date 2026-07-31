@@ -27,8 +27,8 @@
               <tr>
                 <td>
                   <div class="d-flex gap-1">
-                    <%= link_to "Edit", edit_user_path(user.id), class: "btn btn-warning btn-sm" %>
-                    <%= link_to "Delete", delete_user_path(user.id), class: "btn btn-danger btn-sm" %>
+                    <%= link_to "Edit", edit_player_path(user.id), class: "btn btn-warning btn-sm" %>
+                    <%= link_to "Delete", delete_player_path(user.id), class: "btn btn-danger btn-sm" %>
                   </div>
                 </td>
                 <td>
@@ -63,7 +63,7 @@
         </table>
       </div>
       <div class="card-footer d-flex justify-content-center gap-3">
-        <%= link_to "Add User", new_user_path, class: "btn btn-primary" %>
+        <%= link_to "Add User", new_player_path, class: "btn btn-primary" %>
       </div>
     </div>
   </div>

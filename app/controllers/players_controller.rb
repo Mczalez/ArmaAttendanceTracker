@@ -1,22 +1,22 @@
-class UsersController < ApplicationController
+class PlayersController < ApplicationController
   def index
-    @Users = User.all
+    @Users = Player.all
   end
 
   def new
-    @user = User.new
+    @user = Player.new
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = Player.find(params[:id])
   end
 
   def delete
-    @user = User.find(params[:id])
+    @user = Player.find(params[:id])
   end
 
   def create
-    @user = User.new(user_params)
+    @user = Player.new(user_params)
 
     if @user.save
       redirect_to root_path, notice: "User created."
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = Player.find(params[:id])
 
     if @user.update(user_params)
       redirect_to root_path, notice: "User updated."
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = Player.find(params[:id])
 
     submitted_name = params[:name]
 
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(
+    params.require(:player).permit(
       :name,
       :steam_id,
       :discord,
