@@ -1,52 +1,54 @@
-<div class="container-fluid bg-dark min-vh-100 d-flex align-items-center justify-content-center">
-  <div class="card bg-secondary bg-opacity-10 border-secondary shadow-sm" style="width: 30rem;">
-    <div class="card-body p-4">
+  <div class="container-fluid bg-dark min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="card bg-secondary bg-opacity-10 border-secondary shadow-sm" style="width: 30rem;">
+      <div class="card-body p-4">
 
-      <h3 class="text-center text-light mb-4">
-        Add Player
-      </h3>
+        <h3 class="text-center text-light mb-4">
+          Add Player
+        </h3>
 
-      <%= form_with model: @user do |f| %>
+        <%= form_with model: @player do |f| %>
 
-        <div class="mb-3">
-          <%= f.label :name, class: "text-light" %>
-          <%= f.text_field :name,
-                           class: "form-control bg-dark text-light border-secondary",
-                           placeholder: "Player name" %>
-        </div>
+          <%= f.hidden_field :unit_id, value: @unit.id %>
 
-        <div class="mb-3">
-          <%= f.label :steam_id, "Steam64 ID", class: "text-light" %>
-          <%= f.text_field :steam_id,
-                           class: "form-control bg-dark text-light border-secondary",
-                           placeholder: "Steam64 ID" %>
-        </div>
+          <div class="mb-3">
+            <%= f.label :name, class: "text-light" %>
+            <%= f.text_field :name,
+                             class: "form-control bg-dark text-light border-secondary",
+                             placeholder: "Player name" %>
+          </div>
 
-        <div class="mb-3">
-          <%= f.label :discord, class: "text-light" %>
-          <%= f.text_field :discord,
-                           class: "form-control bg-dark text-light border-secondary",
-                           placeholder: "Discord username" %>
-        </div>
+          <div class="mb-3">
+            <%= f.label :steam_id, "Steam64 ID", class: "text-light" %>
+            <%= f.text_field :steam_id,
+                             class: "form-control bg-dark text-light border-secondary",
+                             placeholder: "Steam64 ID" %>
+          </div>
 
-        <div class="mb-4">
-          <%= f.label :activity, "Activity", class: "text-light" %>
-          <%= f.select :activity,
-                       ["Active", "LOA", "Reserve"],
-                       { selected: "Reserve" },
-                       class: "form-control bg-dark text-light border-secondary" %>
-        </div>
+          <div class="mb-3">
+            <%= f.label :discord, class: "text-light" %>
+            <%= f.text_field :discord,
+                             class: "form-control bg-dark text-light border-secondary",
+                             placeholder: "Discord username" %>
+          </div>
 
-        <div class="d-flex justify-content-center gap-3">
-          <%= f.submit "Create Player", class: "btn btn-primary" %>
+          <div class="mb-4">
+            <%= f.label :activity, "Activity", class: "text-light" %>
+            <%= f.select :activity,
+                         ["Active", "LOA", "Reserve"],
+                         { selected: "Reserve" },
+                         class: "form-control bg-dark text-light border-secondary" %>
+          </div>
 
-          <%= link_to "Cancel",
-                      root_path,
-                      class: "btn btn-secondary" %>
-        </div>
+          <div class="d-flex justify-content-center gap-3">
+            <%= f.submit "Create Player", class: "btn btn-primary" %>
 
-      <% end %>
+            <%= link_to "Cancel",
+                        players_path(unit_id: @unit.id),
+                        class: "btn btn-secondary" %>
+          </div>
 
+        <% end %>
+
+      </div>
     </div>
   </div>
-</div>

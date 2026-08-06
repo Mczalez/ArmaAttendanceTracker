@@ -1,48 +1,58 @@
 class PlayersController < ApplicationController
   def index
-    @Users = Player.all
+    @unit = Unit.find(params[:unit_id])
+    @players = @unit.players
   end
 
   def new
-    @user = Player.new
+    @player = Player.new
+    @unit = Unit.find(params[:unit_id])
   end
 
   def edit
-    @user = Player.find(params[:id])
+    @player = Player.find(params[:id])
   end
 
   def delete
-    @user = Player.find(params[:id])
+    @player = Player.find(params[:id])
+    @unit = @player.unit
   end
 
   def create
-    @user = Player.new(user_params)
+    @player = Player.new(user_params)
+    @unit = Unit.find_by(id: @player.unit_id)
 
-    if @user.save
-      redirect_to root_path, notice: "User created."
+    unless @unit
+      redirect_to units_path, alert: "Please select a valid unit."
+      return
+    end
+
+    if @player.save
+      redirect_to players_path(unit_id: @unit.id), notice: "Player created."
     else
-      render :new
+      render :new, status: :unprocessable_content
     end
   end
 
   def update
-    @user = Player.find(params[:id])
+    @player = Player.find(params[:id])
 
-    if @user.update(user_params)
-      redirect_to root_path, notice: "User updated."
+    if @player.update(user_params)
+      redirect_to players_path(unit_id: @player.unit_id), notice: "Player edited."
     else
-      redirect_to root_path, alert: "Unable to update user."
+      render :edit, status: :unprocessable_content
     end
   end
 
   def destroy
-    @user = Player.find(params[:id])
+    @player = Player.find(params[:id])
+    @unit = @player.unit
 
     submitted_name = params[:name]
 
-    if submitted_name == @user.name
-      @user.destroy
-      redirect_to root_path, notice: "User deleted."
+    if submitted_name == @player.name
+      @player.destroy
+      redirect_to players_path(unit_id: @player.unit_id), notice: "Player deleted."
     else
       flash.now[:alert] = "Name does not match."
       render :delete, status: :unprocessable_entity
@@ -53,6 +63,7 @@ class PlayersController < ApplicationController
 
   def user_params
     params.require(:player).permit(
+      :unit_id,
       :name,
       :steam_id,
       :discord,

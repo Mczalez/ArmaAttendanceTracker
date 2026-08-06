@@ -2,7 +2,7 @@
   <div class="card bg-secondary bg-opacity-10 border-secondary shadow-sm" style="height: 50rem; width: 80rem;">
     <div class="card-body p-4 d-flex flex-column">
       <h3 class="text-center text-light mb-4">
-        Player Management System
+        <%= @unit.name %> - Player Management System
       </h3>
       <div class="card-body p-4 table-responsive overflow-auto" style="max-height: 70vh;">
         <table class="table table-hover table-dark" style="table-layout: fixed; width: 100%;">
@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @Users.each do |user| %>
+            <% @players.each do |user| %>
               <tr>
                 <td>
                   <div class="d-flex gap-1">
@@ -63,7 +63,7 @@
         </table>
       </div>
       <div class="card-footer d-flex justify-content-center gap-3">
-        <%= link_to "Add User", new_player_path, class: "btn btn-primary" %>
+        <%= link_to "Add User", new_player_path(unit_id: @unit.id), class: "btn btn-primary" %>
         <%= button_to "[TEMP] Browse Units", units_path, method: :get %>
       </div>
     </div>

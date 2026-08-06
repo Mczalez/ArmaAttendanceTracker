@@ -43,7 +43,7 @@ class UnitsController < ApplicationController
   def update
     respond_to do |format|
       if @unit.update(unit_params)
-        format.html { redirect_to units_path, notice: "User updated." }
+        format.html { redirect_to units_path, notice: "Unit updated." }
         format.json { render :show, status: :ok, location: @unit }
       else
         format.html { render :edit, status: :unprocessable_content }
@@ -54,14 +54,14 @@ class UnitsController < ApplicationController
 
   # DELETE /units/1 or /units/1.json
   def destroy
-    submitted_name = params[:name]
-
-    if submitted_name == @unit.name
+    if params[:name] == @unit.name
       @unit.destroy
-      respond_to do |format|
-        format.html { redirect_to units_path, notice: "Unit was successfully destroyed.", status: :see_other }
-        format.json { head :no_content }
-      end
+      redirect_to units_path,
+                  notice: "Unit was successfully destroyed.",
+                  status: :see_other
+    else
+      flash.now[:alert] = "Name does not match."
+      render :delete, status: :unprocessable_content
     end
   end
 

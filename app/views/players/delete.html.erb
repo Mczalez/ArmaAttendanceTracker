@@ -9,12 +9,12 @@
       <p class="text-center text-light mb-4">
         To delete the player, type in their name:
         <br><br>
-        <strong><%= @user.name %></strong>
+        <strong><%= @player.name %></strong>
         <br>
         <%= flash[:alert] %>
       </p>
 
-      <%= form_with model: @user, method: :delete do |f| %>
+      <%= form_with model: @player, method: :delete do |f| %>
 
         <div class="mb-3">
           <%= f.label :name, class: "text-light" %>
@@ -27,7 +27,7 @@
           <%= f.submit "Delete Player", class: "btn btn-primary" %>
 
           <%= link_to "Cancel",
-                      root_path,
+                      players_path(unit_id: @unit.id),
                       class: "btn btn-secondary" %>
         </div>
 
