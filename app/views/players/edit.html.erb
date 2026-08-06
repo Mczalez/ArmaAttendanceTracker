@@ -6,7 +6,7 @@
         Edit Player
       </h3>
 
-      <%= form_with model: @user do |f| %>
+      <%= form_with model: @player do |f| %>
 
         <div class="mb-3">
           <%= f.label :name, class: "text-light" %>
@@ -33,7 +33,7 @@
           <%= f.submit "Edit Player", class: "btn btn-primary" %>
 
           <%= link_to "Cancel",
-                      root_path,
+                      players_path(unit_id: @player.unit_id),
                       class: "btn btn-secondary" %>
         </div>
 
