@@ -30,6 +30,11 @@ class PlayersController < ApplicationController
     if @player.save
       redirect_to players_path(unit_id: @unit.id), notice: "Player created."
     else
+      flash.now[:alert] = if @player.errors[:steam_id].any?
+        "That Steam64ID is already used in this unit."
+      else
+        @player.errors.full_messages.to_sentence
+      end
       render :new, status: :unprocessable_content
     end
   end
@@ -40,6 +45,11 @@ class PlayersController < ApplicationController
     if @player.update(user_params)
       redirect_to players_path(unit_id: @player.unit_id), notice: "Player edited."
     else
+      flash.now[:alert] = if @player.errors[:steam_id].any?
+                            "That Steam64ID is already used in this unit."
+                          else
+                            @player.errors.full_messages.to_sentence
+                          end
       render :edit, status: :unprocessable_content
     end
   end
