@@ -6,6 +6,12 @@
           Add Player
         </h3>
 
+        <% if flash[:alert].present? %>
+          <div class="alert alert-danger" role="alert">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+
         <%= form_with model: @player do |f| %>
 
           <%= f.hidden_field :unit_id, value: @unit.id %>

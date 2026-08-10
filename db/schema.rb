@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-
-# IF THE MIGRATION NEEDS TO CHANGE LIVE DATA, PUSH TO
-# PUSH THEM ALL ANYWAY FOR HISTORY
-
-ActiveRecord::Schema[8.1].define(version: 2026_07_31_175548) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_10_000000) do
   create_table "players", force: :cascade do |t|
     t.string "activity"
     t.datetime "created_at", null: false
@@ -24,6 +19,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_175548) do
     t.string "steam_id"
     t.integer "unit_id"
     t.datetime "updated_at", null: false
+    t.index ["unit_id", "steam_id"], name: "index_players_on_unit_id_and_steam_id", unique: true
     t.index ["unit_id"], name: "index_players_on_unit_id"
   end
 
